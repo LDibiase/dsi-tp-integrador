@@ -1,0 +1,5 @@
+openai>=1.60
+pydantic>=2.5
+python-dotenv>=1.0
+pytest>=8.0
+tiktoken>=0.7
