@@ -33,6 +33,7 @@ pip install -r requirements.txt
 
 # 5. Verificar que quedó bien -> tiene que decir "12 passed"
 pytest -q test_schemas.py
+*python -m pytest -q test_schemas.py --- Por si el otro no funciona*
 ```
 
 Si el paso 5 dice cualquier otra cosa, avisá en el grupo antes de seguir.

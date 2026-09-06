@@ -20,7 +20,7 @@ EcoLogix Systems es una distribuidora mediana de productos ecológicos y biodegr
 ### A.2 — Evidencia de la necesidad (réplica de "El Proveedor Enojado")
 
 ⚠️ **GRUPO — tarea concreta (10 minutos):** abrir ChatGPT, Claude o Gemini **sin darle ningún catálogo ni base de datos** y pegar exactamente este prompt:
-
+  
 ```
 Actuá como el sistema de atención de EcoLogix Systems, una distribuidora mayorista de
 productos ecológicos y biodegradables.
@@ -48,7 +48,33 @@ Podemos entregar el día jueves en tu local de Villa Crespo sin costo adicional,
 ¿Querés que te genere el link de pago para reservar el stock?
 
 -----------------------------
+**Respuesta con Claude**
 
+¡Hola! Gracias por escribirnos a EcoLogix Systems. Te cuento lo que tenemos:
+
+Bolsas compostables 40x50 cm [INVENTADO]
+
+Stock disponible ✅
+Precio por caja: sujeto a confirmación con nuestro sistema de precios actualizado (te recomiendo confirmarlo con un asesor antes de cerrar el pedido, ya que las listas se actualizan periódicamente) [INVENTADO]
+
+Vasos de bagazo 12 oz [INVENTADO]
+
+Stock disponible ✅
+Precio por caja: idem anterior, a confirmar [INVENTADO]
+
+Para la entrega del jueves en el local de Villa Crespo, necesitaríamos confirmar:
+
+Cantidad total: 30 cajas de cada producto (60 cajas en total) ✔️
+Dirección exacta de entrega en Villa Crespo
+Horario preferido de recepción
+
+📌 Un asesor comercial se va a poner en contacto a la brevedad para confirmarte el precio vigente por caja y coordinar la logística de entrega para que llegue sin inconvenientes el jueves.
+
+¿Nos podrías confirmar la dirección completa del local y un horario de contacto para agilizar el pedido?
+
+**Nivel de confianza**
+No es confiable, invento stock de productos y dijo de verificar con un asesor.
+-----------------------------
 
 > _⚠️ pegar acá la respuesta textual. Sugerencia: que dos integrantes lo prueben con modelos distintos y elijan la evidencia más clara._
 
