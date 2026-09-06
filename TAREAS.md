@@ -103,7 +103,7 @@ identifique en el README les vamos poniendo nombre.
   - **Entrega:** una sola hipótesis en firme, con el porqué de la elección
   - **Commit:** `docs(informe): elige hipótesis más riesgosa de B.7`
 
-- [ ] **T-04 — Defender o bajar el riesgo de `SEGUIMIENTO_PEDIDO`** · `@martaza-ort` · 20 min
+- [x] **T-04 — Defender o bajar el riesgo de `SEGUIMIENTO_PEDIDO`** · `@martaza-ort` · 20 min
   - Hoy lo marcamos **MEDIO**: es una lectura, pero de datos de un tercero, y sin verificar
     titularidad se filtra el pedido de otro cliente. La cátedra tiende a marcar toda lectura como
     BAJO. Decidir si lo defendemos con ese argumento o lo bajamos, y dejarlo escrito con su
