@@ -5,6 +5,7 @@
 Marta Artaza — `martaza-ort` — T-04: riesgo de seguimiento de pedidos
 Nombre: Facundo Folgueira,Usuario: Folguee,Lidero: T-02 — Evidencia A.2, segundo modelo
 Nombre: Gisella Aramayo, Usuario: giaramayo, Lidero: T-10 — Costo en pesos o dólares
+Nombre: Agustina Salatino, Usuario: agustinasalatino, Lidero: T-05 — Fundamento de los tres umbrales
 ## Dominio elegido
 
 **EcoLogix Systems** es una distribuidora mediana de productos ecológicos y biodegradables
