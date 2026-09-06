@@ -2,9 +2,10 @@
 
 **Asignatura:** Desarrollo de Sistemas de Inteligencia Artificial (IADS 3)
 **Dominio:** EcoLogix Systems — distribución mayorista/minorista de productos ecológicos y biodegradables
-**Integrantes:** Marta Artaza — `martaza-ort` — T-04: riesgo de seguimiento de pedidos
-Grupo: (Nombre: Facundo Folgueira,Usuario: Folguee,Lidero: T-02 — Evidencia A.2, segundo modelo)
-(Nombre: Federico Cantero, Usuario: Fedoh, Lidero: T-01 — Evidencia A.2, primer modelo)
+**Integrantes:** 
+Marta Artaza — `martaza-ort` — T-04: riesgo de seguimiento de pedidos
+Nombre: Facundo Folgueira,Usuario: Folguee,Lidero: T-02 — Evidencia A.2, segundo modelo
+Nombre: Gisella Aramayo, Usuario: giaramayo, Lidero: T-10 — Costo en pesos o dólares
 > **Estado del documento:** primera iteración (v0.1) para arrancar. Las secciones marcadas con ⚠️ **GRUPO** son las que requieren una acción concreta de alguien del equipo (pegar evidencia real, correr el script con una key propia, decidir algo). Todo lo demás es propuesta discutible.
 
 ---
@@ -76,6 +77,25 @@ Corrido con `tiktoken` (`encoding_for_model("gpt-4o")`, es decir el tokenizador 
 |---|---|---|---|
 | ES: "Hola! ¿Tienen stock de bolsas compostables 40x50 y vasos de bagazo de 12 oz? Necesito 30 cajas de cada uno para el jueves en el local de Villa Crespo. ¿A cuánto está la caja ahora?" | 180 | **51** | 59 |
 | EN: "Hi! Do you have compostable 40x50 bags and 12 oz bagasse cups in stock? I need 30 boxes of each by Thursday at the Villa Crespo store. How much is a box now?" | 157 | **45** | 45 |
+
+**Costo en dólares (T-10):** con GPT-4o mini a $0.150 por millón de tokens de entrada
+(precio vigente, OpenAI, agosto 2026), la consulta en español ($51/1.000.000 \times \$0.150$)
+cuesta **US\$ 0,00000765** por mensaje, y la versión en inglés (45 tokens) cuesta
+**US\$ 0,00000675**. La diferencia es de apenas **US\$ 0,0000009** por mensaje — insignificante
+a nivel individual.
+
+Sin embargo, escalado a **10.000 consultas diarias** (volumen realista para un negocio
+mayorista con WhatsApp activo), la diferencia entre operar solo en español y agregar
+soporte bilingüe se traduce en:
+
+- Español (51 tokens × 10.000 msj/día): **US\$ 0,0765/día** → US\$ 2,30/mes
+- Inglés (45 tokens × 10.000 msj/día): **US\$ 0,0675/día** → US\$ 2,03/mes
+
+La diferencia mensual (~US\$ 0,27) sigue siendo baja porque el input es corto y el modelo
+es el más económico del catálogo (GPT-4o mini). El costo real no está en la diferencia de
+idioma, sino en la salida (**output**), que cuesta 4x más por token ($0.600 vs $0.150 por
+millón): cada respuesta generada por el sistema pesa más en la factura que la variación de
+6 tokens entre ES y EN.
 
 ```python
 import tiktoken

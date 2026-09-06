@@ -157,7 +157,7 @@ Estas no tienen dueño: se deciden entre todos y las escribe quien esté a mano.
     parte, así que conviene que todos hayan visto el pipeline correr al menos una vez.
   - **Dónde:** `informe.md` "Decisiones abiertas" #7
 
-- [ ] **T-10 — Costo en pesos o dólares (opcional)** · *grupal*
+- [x] **T-10 — Costo en pesos o dólares (opcional)** · `@giaramayo` · *grupal*
   - A.4 deja el cálculo en tokens porque los precios cambian. Si lo quieren en plata, buscar el
     precio vigente por millón de tokens de `gpt-4o-mini` y multiplicar.
   - **Dónde:** `informe.md` § A.4, línea 76
