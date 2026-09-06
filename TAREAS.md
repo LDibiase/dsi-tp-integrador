@@ -112,7 +112,7 @@ identifique en el README les vamos poniendo nombre.
   - **Entrega:** decisión escrita, con el mismo formato que ya tiene el punto 2
   - **Commit:** `docs(informe): fundamenta el riesgo de SEGUIMIENTO_PEDIDO`
 
-- [ ] **T-05 — Fundamentar los tres umbrales** · `@agustinasalatino` · 25 min
+- [x] **T-05 — Fundamentar los tres umbrales** · `@agustinasalatino` · 25 min
   - Confianza mínima **0.60** para no derivar a un humano, cantidad máxima **10.000** por línea de
     pedido, número de pedido de **4 a 8 dígitos**. Los tres están inventados. No hace falta un
     número perfecto: hace falta poder contestar "¿por qué 0.60?" en la oral. Un fundamento honesto

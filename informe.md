@@ -364,7 +364,35 @@ Este script es el **segundo y tercer paso** del flujo de B.6: recibe el `texto_l
    - **`CONSULTA_PRECIO` — descartada:** comparte la misma consulta (`SELECT cantidad_disponible, precio_lista FROM stock JOIN productos`) y el mismo riesgo **BAJO** que `CONSULTA_STOCK`; además, en el canal real los clientes preguntan precio y disponibilidad **en la misma frase** (ver el primer input de B.3: *"cuanto sale la caja y si hay para retirar hoy"*). Separarlas obligaría a elegir arbitrariamente una de las dos y crearía ambigüedad donde hoy no la hay.
    - **`ALTA_CLIENTE` — descartada:** es calcada del `ALTA_DISTRIBUIDOR` del caso Ortelana de la cátedra, que el TP prohíbe reutilizar. Funcionalmente ya está cubierta: el flujo de B.6 deriva a un vendedor cuando el remitente no se resuelve contra `clientes`, y el alta la hace una persona (escritura sobre datos maestros, no algo que convenga disparar desde un mensaje de WhatsApp).
    - **`MODIFICAR_PEDIDO` — descartada por ahora, anotada como extensión futura:** era la única candidata con fundamento real bajo el criterio adoptado, porque **sí** tiene acción de backend propia (`UPDATE` sobre un pedido existente) y un riesgo distinto al `INSERT` de `CREAR_PEDIDO`: modificar un pedido ya confirmado toca stock reservado y una factura potencialmente emitida. Queda fuera de la Entrega 1 para no inflar el árbol antes de tener datos de uso. Si se incorpora, hay que tocar los cuatro artefactos a la vez (B.3, el `Literal` de `schemas.py`, el System Prompt de `app.py` y el lote de C.3).
-3. **Umbrales provisorios:** confianza mínima 0.60, cantidad máxima 10.000 por línea, nro de pedido de 4 a 8 dígitos. Son inventados; discutirlos.
+3. **Umbrales provisorios — fundamento (T-05, 2026-09-06):** los tres valores son
+   provisorios y se recalibran con la primera semana de operación real; hoy no hay
+   datos de uso que permitan moverlos con criterio. Ninguno es una regla de negocio
+   cerrada.
+   - **Confianza mínima 0.60 para no derivar a un humano** (`UMBRAL_CONFIANZA` en
+     `app.py`, ajustable por `.env`). Es el default de la cátedra y un punto medio
+     razonable: por debajo de 0.60 el modelo está declarando que duda entre dos
+     intenciones (la regla 6 del System Prompt le pide bajar la confianza en vez de
+     adivinar), y una intención dudosa que dispara una acción de backend —sobre todo
+     `CREAR_PEDIDO`— cuesta más que una derivación de más. Se prefiere pecar de
+     derivar. Se ajusta cuando haya un lote etiquetado a mano: si deriva casos que
+     resolvía bien, se baja; si ejecuta intenciones equivocadas, se sube. Vive en
+     `.env` y no en el prompt para poder moverlo sin tocar el modelo.
+   - **Cantidad máxima 10.000 por línea de pedido** (`cantidad_en_rango` en
+     `schemas.py`). EcoLogix vende por bulto a comercios y mayoristas; una sola línea
+     con más de 10.000 cajas no es un pedido real de ese universo de clientes: es casi
+     seguro un error de extracción del modelo (confundió una medida o un código con la
+     cantidad) o un input malicioso. No pretende ser el máximo comercial exacto —eso
+     lo fija ventas con el histórico— sino un tope de seguridad que ataja lo absurdo
+     antes de llegar al `INSERT`. El piso (> 0) sí es duro: 0 o negativo nunca es un
+     pedido válido.
+   - **Número de pedido de 4 a 8 dígitos** (`limpiar_nro_pedido` en `schemas.py`).
+     `pedidos.id` es un entero autoincremental. El piso de 4 dígitos evita tomar como
+     número de pedido un "2" o un "12" sueltos que el cliente escribió por otra cosa
+     (cantidad, hora, número de local); se empieza a numerar desde 1000. El techo de 8
+     dígitos (hasta ~100 millones de pedidos) es holgado para una distribuidora
+     mediana durante toda la vida del sistema y descarta cadenas larguísimas que
+     suelen ser teléfonos, CUIT o IDs de otra cosa. El validador primero deja solo los
+     dígitos (`"N° 4.521"` → `"4521"`) y después chequea el rango.
 4. **Riesgo de `SEGUIMIENTO_PEDIDO` — ✅ DECIDIDO (grupo, 2026-09-06):** se mantiene como **MEDIO**. No lo clasificamos como **BAJO** porque, aunque la acción de backend sea una lectura, puede filtrar información confidencial de otro cliente, como el estado, la demora o el tracking de un pedido. El riesgo no depende únicamente de que la operación sea técnicamente simple, sino del posible impacto sobre la privacidad y la confidencialidad de los datos.
    - Ante el mensaje "¿Cómo viene el pedido N° 4.521?", el sistema normaliza el número como `4521`. El riesgo no está en interpretar ese número, sino en informar el estado de un pedido que podría pertenecer a otra persona o empresa.
    - La acción de backend es un `SELECT` sobre `pedidos` y `envios`. Antes de informar cualquier dato, debe resolver determinísticamente al remitente mediante su teléfono o email y verificar que `pedidos.cliente_id == remitente.cliente_id`. Si la titularidad no coincide o no puede verificarse, no informa el estado, la demora ni el tracking, y deriva la consulta o responde de forma genérica.
