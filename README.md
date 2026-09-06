@@ -61,6 +61,11 @@ python lote.py --tecnica zero --salida resultados_lote_zero.md    # para compara
 python lote.py --extra                                            # suma 2 casos opcionales
 ```
 
+> En macOS/Linux, si `python` no existe en el PATH usar `python3` en los pasos 1 y 3-5.
+> Entorno verificado: Python 3.14.6 — `pytest -q test_schemas.py` da **12 passed**,
+> `sqlite3 ecologix.db < schema.sql` crea las 9 tablas, y `app.py`/`lote.py` importan
+> sin `.env` (toman los defaults). Los pasos 1 a 3 no consumen créditos de API.
+
 Cada corrida se registra en `logs/interacciones.jsonl` (ignorado por Git).
 
 ### Variables de entorno (`.env`)
