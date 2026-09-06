@@ -6,6 +6,7 @@
 Marta Artaza — `martaza-ort` — T-04: riesgo de seguimiento de pedidos
 Nombre: Facundo Folgueira,Usuario: Folguee,Lidero: T-02 — Evidencia A.2, segundo modelo
 Nombre: Gisella Aramayo, Usuario: giaramayo, Lidero: T-10 — Costo en pesos o dólares
+Nombre: Agustina Salatino, Usuario: agustinasalatino, Lidero: T-05 — Fundamento de los tres umbrales
 > **Estado del documento:** primera iteración (v0.1) para arrancar. Las secciones marcadas con ⚠️ **GRUPO** son las que requieren una acción concreta de alguien del equipo (pegar evidencia real, correr el script con una key propia, decidir algo). Todo lo demás es propuesta discutible.
 
 ---
