@@ -1,7 +1,7 @@
 # EcoLogix Systems — TP Integrador (Entrega 1): Del diagnóstico al pipeline validado
 
 **Asignatura:** Desarrollo de Sistemas de Inteligencia Artificial — IADS 3, ORT
-**Grupo:** _⚠️ completar integrantes (nombre — usuario de Git — parte que lideró)_
+**Grupo:** Marta Artaza — `martaza-ort` — T-04: riesgo de seguimiento de pedidos
 Grupo: (Nombre: Facundo Folgueira,Usuario: Folguee,Lidero: T-02 — Evidencia A.2, segundo modelo)
 ## Dominio elegido
 
