@@ -78,7 +78,7 @@ Dos ediciones de una línea cada una. Conviene hacerlas en **commits separados**
 Propuesta de reparto, ajustable. Los usuarios son los del repo; a medida que cada uno se
 identifique en el README les vamos poniendo nombre.
 
-- [ ] **T-01 — Evidencia A.2, primer modelo** · `@Fedoh` · 15 min
+- [x] **T-01 — Evidencia A.2, primer modelo** · `@Fedoh` · 15 min
   - Abrir ChatGPT, Claude o Gemini **sin darle ningún catálogo ni base de datos** y pegar el prompt
     que ya está escrito en la sección A.2. Después pegar la respuesta **textual** en el informe y
     marcar lo que el modelo inventó: precios, stock, plazos de entrega. Ese invento es la evidencia
@@ -87,7 +87,7 @@ identifique en el README les vamos poniendo nombre.
   - **Entrega:** la respuesta pegada + completar "Con qué nivel de confianza lo presentó"
   - **Commit:** `docs(informe): evidencia A.2 con alucinaciones marcadas`
 
-- [ ] **T-02 — Evidencia A.2, segundo modelo** · `@Folguee` · 15 min
+- [x] **T-02 — Evidencia A.2, segundo modelo** · `@Folguee` · 15 min
   - El mismo prompt que T-01 pero en otro modelo, para comparar. La sección pide justamente que dos
     integrantes lo prueben con modelos distintos y elijan la evidencia más clara. Coordinar con
     quien tome T-01 para no usar el mismo.

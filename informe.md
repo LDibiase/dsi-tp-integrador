@@ -2,11 +2,16 @@
 
 **Asignatura:** Desarrollo de Sistemas de Inteligencia Artificial (IADS 3)
 **Dominio:** EcoLogix Systems — distribución mayorista/minorista de productos ecológicos y biodegradables
-**Integrantes:** 
-Marta Artaza — `martaza-ort` — T-04: riesgo de seguimiento de pedidos
-Nombre: Facundo Folgueira,Usuario: Folguee,Lidero: T-02 — Evidencia A.2, segundo modelo
-Nombre: Gisella Aramayo, Usuario: giaramayo, Lidero: T-10 — Costo en pesos o dólares
-Nombre: Agustina Salatino, Usuario: agustinasalatino, Lidero: T-05 — Fundamento de los tres umbrales
+**Integrantes:**
+
+- Lucas Di Biase — `LDibiase` — Parte C: pipeline, lote y prompting (T-06, T-07)
+- Marta Artaza — `martaza-ort` — T-04: riesgo de `SEGUIMIENTO_PEDIDO`
+- Facundo Folgueira — `Folguee` — T-02: evidencia A.2, segundo modelo
+- Federico Cantero — `Fedoh` — T-01: evidencia A.2, primer modelo
+- Agustina Salatino — `agustinasalatino` — T-05: fundamento de los tres umbrales
+- Gisella Aramayo — `giaramayo` — T-10: costo en dólares
+- _⚠️ Lucía (`LuciaLG1988`) — completar nombre y parte (T-03: hipótesis más riesgosa)_
+
 > **Estado del documento:** primera iteración (v0.1) para arrancar. Las secciones marcadas con ⚠️ **GRUPO** son las que requieren una acción concreta de alguien del equipo (pegar evidencia real, correr el script con una key propia, decidir algo). Todo lo demás es propuesta discutible.
 
 ---
@@ -19,7 +24,7 @@ EcoLogix Systems es una distribuidora mediana de productos ecológicos y biodegr
 
 ### A.2 — Evidencia de la necesidad (réplica de "El Proveedor Enojado")
 
-⚠️ **GRUPO — tarea concreta (10 minutos):** abrir ChatGPT, Claude o Gemini **sin darle ningún catálogo ni base de datos** y pegar exactamente este prompt:
+**Método:** se abrieron dos modelos distintos **sin darles ningún catálogo ni base de datos** y se les pegó exactamente este prompt:
   
 ```
 Actuá como el sistema de atención de EcoLogix Systems, una distribuidora mayorista de
@@ -76,11 +81,9 @@ Horario preferido de recepción
 No es confiable, invento stock de productos y dijo de verificar con un asesor.
 -----------------------------
 
-> _⚠️ pegar acá la respuesta textual. Sugerencia: que dos integrantes lo prueben con modelos distintos y elijan la evidencia más clara._
-
 **Qué inventó (marcar en negrita o con [INVENTADO]):** lo esperable es que invente **stock disponible**, **precios por caja**, **unidades por caja**, **plazo de entrega** y hasta **una zona de cobertura**, todo con tono seguro y sin ninguna advertencia.
 
-**Con qué nivel de confianza lo presentó:** _⚠️ completar (¿dijo "tenemos"/"cuesta" en afirmativo? ¿agregó algún "verificá con un asesor"?)_
+**Con qué nivel de confianza lo presentó:** la primera respuesta afirmó en indicativo ("tenemos stock disponible", "el total es $2.421.000 final") y cerró ofreciendo un link de pago, sin una sola advertencia. La segunda fue más prudente con los precios —los marcó como "a confirmar con un asesor"— pero igual afirmó "Stock disponible ✅" para los dos productos. La diferencia importa: incluso el modelo cauto inventó con total seguridad la única variable que el sistema tiene que resolver contra la base de datos.
 
 **Qué le faltó al modelo para responder bien:** acceso a la tabla `stock` (cantidad disponible hoy por depósito), a `productos` (precio de lista vigente y unidades por bulto), a `clientes` (si Villa Crespo es una dirección registrada) y a la política de entregas de EcoLogix. Nada de eso está en los pesos del modelo: **la alucinación es la ausencia de la Base de Conocimiento**, no un defecto del modelo.
 
@@ -135,9 +138,7 @@ print(f"EN: {len(enc.encode(consulta_en))} tokens")   # EN: 45 tokens
 
 Dato curioso que salió al mirar los tokens: `compostables` se parte en `compost` + `ables` y `bagazo` en `bag` + `azo` — el vocabulario técnico del rubro en español se fragmenta más que en inglés (`bagasse` también son 2 tokens, pero `compostable` es 1 menos).
 
-**Reflexión de costo.** El español "cuesta" un 13 % más que el inglés en esta consulta con el tokenizador actual (y un 31 % más con el de la generación anterior: los tokenizadores nuevos mejoraron mucho para español). A 5.000 consultas por día, esa diferencia son ~30.000 tokens/día de entrada — irrelevante frente al verdadero costo: **el System Prompt viaja en cada llamada**. El nuestro pesa 513 tokens en zero-shot y 894 en few-shot, más el JSON Schema que Structured Outputs agrega (~1.100 tokens). O sea: por cada consulta de 51 tokens del cliente, mandamos ~2.000 tokens de contexto — el mensaje del cliente es el 2,5 % del costo de la llamada. A 5.000 consultas/día son ~10 millones de tokens diarios de entrada. Conclusión: no hay que optimizar el idioma del cliente, hay que optimizar lo que **nosotros** repetimos en cada llamada (prompt caching, pocos ejemplos pero buenos) y, sobre todo, **nunca meter el catálogo entero en el prompt** — que es exactamente por qué la Unidad 3 introduce embeddings y RAG.
-
-> _⚠️ GRUPO: si quieren poner el costo en pesos/dólares, buscar el precio vigente por millón de tokens del modelo elegido y multiplicar; lo dejamos en tokens porque los precios cambian._
+**Reflexión de costo.** El español "cuesta" un 13 % más que el inglés en esta consulta con el tokenizador actual (y un 31 % más con el de la generación anterior: los tokenizadores nuevos mejoraron mucho para español). A 10.000 consultas por día, esa diferencia son ~60.000 tokens/día de entrada — irrelevante frente al verdadero costo: **el System Prompt viaja en cada llamada**. El nuestro pesa 513 tokens en zero-shot y 894 en few-shot, más el JSON Schema que Structured Outputs agrega (~1.100 tokens). O sea: por cada consulta de 51 tokens del cliente, mandamos ~2.000 tokens de contexto — el mensaje del cliente es el 2,5 % del costo de la llamada. A 10.000 consultas/día son ~20 millones de tokens diarios de entrada. Conclusión: no hay que optimizar el idioma del cliente, hay que optimizar lo que **nosotros** repetimos en cada llamada (prompt caching, pocos ejemplos pero buenos) y, sobre todo, **nunca meter el catálogo entero en el prompt** — que es exactamente por qué la Unidad 3 introduce embeddings y RAG.
 
 **Lo que tiene que quedar claro al terminar la Parte A:** el modelo de A.2 no falló por ser malo; falló porque le pedimos el stock de EcoLogix a algo que nunca vio el stock de EcoLogix. Todo lo que sigue es cómo conectar el modelo con esa fuente de verdad sin que el modelo la contamine.
 

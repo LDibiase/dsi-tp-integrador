@@ -1,12 +1,16 @@
 # EcoLogix Systems — TP Integrador (Entrega 1): Del diagnóstico al pipeline validado
 
 **Asignatura:** Desarrollo de Sistemas de Inteligencia Artificial — IADS 3, ORT
-**Grupo:** 
-Marta Artaza — `martaza-ort` — T-04: riesgo de seguimiento de pedidos
-Nombre: Facundo Folgueira,Usuario: Folguee,Lidero: T-02 — Evidencia A.2, segundo modelo
-Nombre: Gisella Aramayo, Usuario: giaramayo, Lidero: T-10 — Costo en pesos o dólares
-Nombre: Agustina Salatino, Usuario: agustinasalatino, Lidero: T-05 — Fundamento de los tres umbrales
-Nombre: Federico Cantero, Usuario: Fedoh, Lidero: T-01 — Evidencia A.2, primer modelo
+**Grupo:**
+
+- Lucas Di Biase — `LDibiase` — Parte C: pipeline, lote y prompting (T-06, T-07)
+- Marta Artaza — `martaza-ort` — T-04: riesgo de `SEGUIMIENTO_PEDIDO`
+- Facundo Folgueira — `Folguee` — T-02: evidencia A.2, segundo modelo
+- Federico Cantero — `Fedoh` — T-01: evidencia A.2, primer modelo
+- Agustina Salatino — `agustinasalatino` — T-05: fundamento de los tres umbrales
+- Gisella Aramayo — `giaramayo` — T-10: costo en dólares
+- _⚠️ Lucía (`LuciaLG1988`) — completar nombre y parte (T-03: hipótesis más riesgosa)_
+
 ## Dominio elegido
 
 **EcoLogix Systems** es una distribuidora mediana de productos ecológicos y biodegradables
