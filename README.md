@@ -2,7 +2,7 @@
 
 **Asignatura:** Desarrollo de Sistemas de Inteligencia Artificial — IADS 3, ORT
 **Grupo:** _⚠️ completar integrantes (nombre — usuario de Git — parte que lideró)_
-
+Grupo: (Nombre: Facundo Folgueira,Usuario: Folguee,Lidero: T-02 — Evidencia A.2, segundo modelo)
 ## Dominio elegido
 
 **EcoLogix Systems** es una distribuidora mediana de productos ecológicos y biodegradables
