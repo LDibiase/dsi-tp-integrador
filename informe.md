@@ -4,6 +4,7 @@
 **Dominio:** EcoLogix Systems — distribución mayorista/minorista de productos ecológicos y biodegradables
 **Integrantes:** Marta Artaza — `martaza-ort` — T-04: riesgo de seguimiento de pedidos
 Grupo: (Nombre: Facundo Folgueira,Usuario: Folguee,Lidero: T-02 — Evidencia A.2, segundo modelo)
+(Nombre: Federico Cantero, Usuario: Fedoh, Lidero: T-01 — Evidencia A.2, primer modelo)
 > **Estado del documento:** primera iteración (v0.1) para arrancar. Las secciones marcadas con ⚠️ **GRUPO** son las que requieren una acción concreta de alguien del equipo (pegar evidencia real, correr el script con una key propia, decidir algo). Todo lo demás es propuesta discutible.
 
 ---
