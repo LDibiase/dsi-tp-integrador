@@ -1,0 +1,26 @@
+# Credenciales — NUNCA commitear
+.env
+.env.local
+*.key
+
+# Logs de corridas del pipeline
+logs/
+
+# Base de datos local (se regenera con schema.sql)
+*.db
+*.sqlite
+*.sqlite3
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# Sistema / editores
+.DS_Store
+.vscode/
+.idea/
