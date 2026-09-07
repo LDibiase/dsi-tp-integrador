@@ -152,10 +152,9 @@ Estas no tienen dueño: se deciden entre todos y las escribe quien esté a mano.
     confirma que queda inventado y listo.
   - **Dónde:** `informe.md` § A.1 + "Decisiones abiertas" #1
 
-- [ ] **T-09 — Repartir la defensa oral** · *grupal*
-  - Un integrante por parte: A (caso, evidencia, PEAS, tokens) · B (matriz, decisión técnica,
-    artefactos) · C (código, lote, prompting). Pueden preguntarle a cualquiera sobre cualquier
-    parte, así que conviene que todos hayan visto el pipeline correr al menos una vez.
+- [~] **T-09 — Repartir la defensa oral** · *grupal* · ⏸️ **postergada**
+  - La Entrega 1 no incluye defensa y todavía no sabemos cómo se evalúa el TP al cierre del
+    cuatrimestre. Se retoma cuando la cátedra lo comunique.
   - **Dónde:** `informe.md` "Decisiones abiertas" #7
 
 - [x] **T-10 — Costo en pesos o dólares (opcional)** · `@giaramayo` · *grupal*
