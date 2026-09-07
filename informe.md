@@ -12,7 +12,9 @@
 - Gisella Aramayo — `giaramayo` — T-10: costo en dólares
 - _⚠️ Lucía (`LuciaLG1988`) — completar nombre y parte (T-03: hipótesis más riesgosa)_
 
-> **Estado del documento:** primera iteración (v0.1) para arrancar. Las secciones marcadas con ⚠️ **GRUPO** son las que requieren una acción concreta de alguien del equipo (pegar evidencia real, correr el script con una key propia, decidir algo). Todo lo demás es propuesta discutible.
+> **Estado del documento (Entrega 1 — 2026-09-06):** completo para esta entrega. Las Partes A, B y C están cerradas: la evidencia de A.2 es la respuesta textual de dos modelos distintos con lo inventado marcado, el lote de C.3 y la comparación de C.4 se corrieron contra la API real (`gpt-4o-mini`, 6 inputs, dos técnicas) y las decisiones de diseño están fundamentadas al final del documento. Nada de lo que se afirma acá sobre el comportamiento del sistema es una estimación: se reproduce corriendo `python lote.py`.
+>
+> Quedan dos puntos abiertos, señalados con ⚠️ en el lugar donde corresponden: la elección de la hipótesis más riesgosa en B.7, y una diferencia entre lo que la matriz B.3 preveía y lo que el modelo devolvió en el caso del reclamo (ver la lectura de C.3). El TP es integrador y sigue durante el cuatrimestre; ambos se resuelven en la próxima iteración.
 
 ---
 
