@@ -10,7 +10,7 @@
 - Federico Cantero — `Fedoh` — T-01: evidencia A.2, primer modelo
 - Agustina Salatino — `agustinasalatino` — T-05: fundamento de los tres umbrales
 - Gisella Aramayo — `giaramayo` — T-10: costo en dólares
-- _⚠️ Lucía (`LuciaLG1988`) — completar nombre y parte (T-03: hipótesis más riesgosa)_
+- Lucía Lopez Guerrero - (`LuciaLG1988`) — T-03: hipótesis más riesgosa
 
 > **Estado del documento:** primera iteración (v0.1) para arrancar. Las secciones marcadas con ⚠️ **GRUPO** son las que requieren una acción concreta de alguien del equipo (pegar evidencia real, correr el script con una key propia, decidir algo). Todo lo demás es propuesta discutible.
 
@@ -356,9 +356,9 @@ Mensaje de WhatsApp del cliente → intención + parámetros validados → verif
 
 ### B.7 — Hipótesis más riesgosa
 
-**Que la planilla de stock del almacén se pueda reemplazar por una tabla que se actualiza en el momento en que entra y sale mercadería: si el depósito sigue cargando el stock "al final del día", el sistema va a responder con datos falsos con total seguridad — la misma alucinación de A.2, pero ahora firmada por EcoLogix.**
+La hipótesis más riesgosa es que la planilla de stock del almacén se pueda reemplazar por una tabla que se actualiza en el momento en que entra y sale mercadería. Si el depósito sigue cargando el stock "al final del día", el sistema va a responder con datos desactualizados con total seguridad —la misma alucinación de A.2, pero ahora firmada por EcoLogix.
 
-> _⚠️ GRUPO, alternativa para discutir: "que los clientes describen los productos con precisión suficiente (o que el catálogo tiene alias suficientes) para mapear texto → SKU sin preguntar en la mayoría de los casos; si la mayoría de los mensajes termina pidiendo aclaración, el sistema no reduce ni la latencia ni la carga, y nadie lo usa."_
+Se considera más riesgosa que la capacidad de los clientes de describir los productos con precisión suficiente para mapearlos al catálogo porque, ante una descripción ambigua, el sistema puede solicitar una aclaración antes de continuar. En cambio, si la fuente de stock está desactualizada, incluso un pedido perfectamente interpretado puede terminar confirmando mercadería que en realidad ya no está disponible.
 
 ---
 
