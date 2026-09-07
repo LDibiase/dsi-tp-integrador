@@ -48,8 +48,6 @@ el backend determinista es el "chef" (valida con Pydantic y resuelve contra SQL)
 
 La Entrega 1 está cerrada: integrantes completos, A.2 con la respuesta real de dos modelos y
 lo inventado marcado, lote de C.3 y comparación de C.4 corridos contra la API real, y las
-7 "Decisiones abiertas" resueltas o postergadas con fundamento.
+7 "Decisiones abiertas" resueltas o postergadas con fundamento. No quedan marcadores ⚠️.
 
-- [ ] A.2: identificar con qué modelo se corrió la primera respuesta (@Fedoh). Es el único ⚠️
-      que queda en `informe.md`; la segunda ya está identificada como Claude.
 - [ ] Confirmar que el docente esté agregado como colaborador del repo.

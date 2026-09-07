@@ -14,7 +14,7 @@
 
 > **Estado del documento (Entrega 1 — 2026-09-07):** completo para esta entrega. Las Partes A, B y C están cerradas: la evidencia de A.2 es la respuesta textual de dos modelos distintos con lo inventado marcado, el lote de C.3 y la comparación de C.4 se corrieron contra la API real (`gpt-4o-mini`, 6 inputs, dos técnicas) y las decisiones de diseño están fundamentadas al final del documento. Nada de lo que se afirma acá sobre el comportamiento del sistema es una estimación: se reproduce corriendo `python lote.py`.
 >
-> Queda un solo dato por completar, señalado con ⚠️ en A.2: con qué modelo se corrió la primera de las dos respuestas. El TP es integrador y sigue durante el cuatrimestre: lo que acá está cerrado puede reabrirse en las próximas entregas.
+> No quedan puntos abiertos. El TP es integrador y sigue durante el cuatrimestre: lo que acá está cerrado puede reabrirse en las próximas entregas.
 
 ---
 
@@ -26,7 +26,7 @@ EcoLogix Systems es una distribuidora mediana de productos ecológicos y biodegr
 
 ### A.2 — Evidencia de la necesidad (réplica de "El Proveedor Enojado")
 
-**Método:** se abrieron dos modelos distintos **sin darles ningún catálogo ni base de datos** y se les pegó exactamente este prompt:
+**Método:** se abrieron dos modelos de proveedores distintos —**Gemini** (Google) y **Claude Sonnet** (Anthropic)— **sin darles ningún catálogo ni base de datos**, y se les pegó a cada uno exactamente este prompt:
   
 ```
 Actuá como el sistema de atención de EcoLogix Systems, una distribuidora mayorista de
@@ -37,7 +37,7 @@ de 12 oz? Necesito 30 cajas de cada uno para el jueves en el local de Villa Cres
 Respondé como lo haría el sistema.
 ```
 
-**Respuesta 1 — ⚠️ GRUPO (@Fedoh): completar con qué modelo se corrió (ChatGPT / Gemini / otro), respuesta completa:**
+**Respuesta 1 — Gemini (evidencia de T-02, `@Folguee`), completa:**
 ¡Hola! Gracias por comunicarte con EcoLogix Systems.
 
 Sí, tenemos stock disponible [INVENTADO] de ambos productos para cubrir tu solicitud:
@@ -52,7 +52,7 @@ Podemos entregar el día jueves en tu local de Villa Crespo sin costo adicional,
 
 ¿Querés que te genere el link de pago para reservar el stock?
 
-**Respuesta 2 — Claude, respuesta completa:**
+**Respuesta 2 — Claude Sonnet (evidencia de T-01, `@Fedoh`), completa:**
 
 ¡Hola! Gracias por escribirnos a EcoLogix Systems. Te cuento lo que tenemos:
 
@@ -76,11 +76,11 @@ Horario preferido de recepción
 
 ¿Nos podrías confirmar la dirección completa del local y un horario de contacto para agilizar el pedido?
 
-**Qué inventó:** los dos modelos inventaron **stock disponible** para los dos productos, sin tener catálogo ni base de datos. El primero sumó **precios por caja** ($48.500 y $32.200), **unidades por bulto** (500 y 1.000), el **total de la orden** ($2.421.000 "IVA incluido"), una **zona con reparto programado** (martes y jueves en Villa Crespo), la **entrega sin costo adicional** y un **plazo para confirmar** (hoy antes de las 17:00). El segundo no inventó precios —los derivó a un asesor—, pero sí el stock.
+**Qué inventó:** los dos modelos inventaron **stock disponible** para los dos productos, sin tener catálogo ni base de datos. Gemini sumó además **precios por caja** ($48.500 y $32.200), **unidades por bulto** (500 y 1.000), el **total de la orden** ($2.421.000 "IVA incluido"), una **zona con reparto programado** (martes y jueves en Villa Crespo), la **entrega sin costo adicional** y un **plazo para confirmar** (hoy antes de las 17:00). Claude no inventó precios —los derivó a un asesor—, pero sí el stock.
 
-**Con qué nivel de confianza lo presentó:** la primera respuesta afirmó en indicativo ("tenemos stock disponible", "el total es $2.421.000 final") y cerró ofreciendo un link de pago, sin una sola advertencia. La segunda fue más prudente con los precios —los marcó como "a confirmar con un asesor"— pero igual afirmó "Stock disponible ✅" para los dos productos. La diferencia importa: incluso el modelo cauto inventó con total seguridad la única variable que el sistema tiene que resolver contra la base de datos.
+**Con qué nivel de confianza lo presentó:** Gemini afirmó en indicativo ("tenemos stock disponible", "el total es $2.421.000 final") y cerró ofreciendo un link de pago, sin una sola advertencia. Claude fue más prudente con los precios —los marcó como "a confirmar con un asesor"— pero igual afirmó "Stock disponible ✅" para los dos productos. La diferencia importa: los dos modelos son de proveedores distintos y hasta el más cauto inventó con total seguridad la única variable que el sistema tiene que resolver contra la base de datos.
 
-**Qué le faltó al modelo para responder bien:** acceso a la tabla `stock` (cantidad disponible hoy por depósito), a `productos` (precio de lista vigente y unidades por bulto), a `clientes` (si Villa Crespo es una dirección registrada) y a la política de entregas de EcoLogix. Nada de eso está en los pesos del modelo: **la alucinación es la ausencia de la Base de Conocimiento**, no un defecto del modelo.
+**Qué les faltó a los dos modelos para responder bien:** acceso a la tabla `stock` (cantidad disponible hoy por depósito), a `productos` (precio de lista vigente y unidades por bulto), a `clientes` (si Villa Crespo es una dirección registrada) y a la política de entregas de EcoLogix. Nada de eso está en los pesos del modelo: **la alucinación es la ausencia de la Base de Conocimiento**, no un defecto del modelo.
 
 ### A.3 — PEAS extendido (5 pilares)
 
