@@ -9,7 +9,7 @@
 - Federico Cantero — `Fedoh` — T-01: evidencia A.2, primer modelo
 - Agustina Salatino — `agustinasalatino` — T-05: fundamento de los tres umbrales
 - Gisella Aramayo — `giaramayo` — T-10: costo en dólares
-- Lucía Lopez Guerrero `LuciaLG1988` — T-03: hipótesis más riesgosa
+- Lucía Lopez Guerrero — `LuciaLG1988` — T-03: hipótesis más riesgosa
 
 ## Dominio elegido
 
@@ -31,7 +31,7 @@ Intenciones (árbol cerrado): `CONSULTA_STOCK` · `CREAR_PEDIDO` · `SEGUIMIENTO
 | Archivo | Contenido |
 |---|---|
 | `TAREAS.md` | Hoja de ruta: setup, reparto de tareas y reglas de trabajo del grupo |
-| `informe.md` | Partes A y B completas + narrativa de C.4 y C.5 |
+| `informe.md` | Informe completo: Partes A, B y C + decisiones de diseño |
 | `schemas.py` | Contrato Pydantic V2 (`Literal`, validadores, modelo anidado) — C.1 |
 | `app.py` | Pipeline con API real + Structured Outputs + manejo de errores separado — C.2 |
 | `lote.py` | Corre los 6 inputs del dominio y genera `resultados_lote.md` — C.3 |

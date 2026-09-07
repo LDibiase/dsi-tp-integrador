@@ -61,12 +61,12 @@ vez. Si el rebase marca **conflicto** en `informe.md`, pará y avisá en el grup
 
 Dos ediciones de una línea cada una. Conviene hacerlas en **commits separados**.
 
-- [ ] **T-00a — Agregar tu nombre en el README** · *cada integrante*
+- [x] **T-00a — Agregar tu nombre en el README** · *cada integrante*
   - Buscar la línea `**Grupo:** ⚠️ completar…` y agregar nombre, usuario de Git y la parte que vas a liderar.
   - **Dónde:** `README.md`, línea 4
   - **Commit:** `docs: agrega <nombre> a integrantes del README`
 
-- [ ] **T-00b — Agregar tu nombre en el informe** · *cada integrante*
+- [x] **T-00b — Agregar tu nombre en el informe** · *cada integrante*
   - Lo mismo en la línea `**Integrantes:** ⚠️ completar…` del encabezado.
   - **Dónde:** `informe.md`, línea 5
   - **Commit:** `docs(informe): agrega <nombre> a integrantes`
@@ -95,7 +95,7 @@ identifique en el README les vamos poniendo nombre.
   - **Entrega:** segunda respuesta pegada; entre los dos eligen cuál queda
   - **Commit:** `docs(informe): segunda evidencia A.2 para comparar`
 
-- [ ] **T-03 — Elegir la hipótesis más riesgosa (B.7)** · `@LuciaLG1988` · 20 min
+- [x] **T-03 — Elegir la hipótesis más riesgosa (B.7)** · `@LuciaLG1988` · 20 min
   - Hay dos hipótesis redactadas y queda una sola. La primera dice que el stock del depósito se
     puede actualizar en tiempo real; la alternativa dice que los clientes describen los productos
     con precisión suficiente para mapearlos al catálogo. Elegir cuál es más riesgosa *para este

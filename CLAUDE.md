@@ -14,7 +14,7 @@ el backend determinista es el "chef" (valida con Pydantic y resuelve contra SQL)
 ## Archivos y a qué parte del TP responden
 
 - `informe.md` — Partes A (diagnóstico, PEAS, tiktoken) y B (matriz de intenciones, decisión reglas/LLM,
-  JSON + SQL + System Prompt, flujo, hipótesis) + narrativa C.4/C.5. Las secciones ⚠️ GRUPO están pendientes.
+  JSON + SQL + System Prompt, flujo, hipótesis) + narrativa C.4/C.5. Cerrado para la Entrega 1.
 - `schemas.py` — C.1. Contrato Pydantic V2. `IntencionEcoLogix` es un `Literal` de 5 valores.
 - `app.py` — C.2. Pipeline: `.env` → OpenAI con `response_format` json_schema estricto → Pydantic → enrutador.
 - `lote.py` — C.3. 6 inputs fijos → `resultados_lote.md`. `--tecnica zero|few` para el experimento de C.4.
@@ -44,11 +44,12 @@ el backend determinista es el "chef" (valida con Pydantic y resuelve contra SQL)
   Structured Outputs puede rechazarlas. Las reglas van en `@field_validator`.
 - Antes de commitear: `python -m pytest -q test_schemas.py`.
 
-## Pendientes (estado al 2026-09-04)
+## Pendientes (estado al 2026-09-07)
 
-- [ ] Completar integrantes en README e informe.
-- [ ] A.2: pegar la respuesta real de ChatGPT/Claude/Gemini con lo inventado marcado.
-- [ ] Correr `python app.py` y `python lote.py` con una key propia; pegar la tabla en resultados_lote.md.
-- [ ] C.4: correr `lote.py --tecnica zero` y documentar un caso que cambió con few-shot.
-- [ ] Decidir los 7 puntos de "Decisiones abiertas" al final de informe.md.
-- [ ] Crear repo (privado, docente como colaborador). Primer commit: `.gitignore` + `.env.example`.
+La Entrega 1 está cerrada: integrantes completos, A.2 con la respuesta real de dos modelos y
+lo inventado marcado, lote de C.3 y comparación de C.4 corridos contra la API real, y las
+7 "Decisiones abiertas" resueltas o postergadas con fundamento.
+
+- [ ] A.2: identificar con qué modelo se corrió la primera respuesta (@Fedoh). Es el único ⚠️
+      que queda en `informe.md`; la segunda ya está identificada como Claude.
+- [ ] Confirmar que el docente esté agregado como colaborador del repo.
