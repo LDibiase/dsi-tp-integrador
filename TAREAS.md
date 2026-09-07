@@ -123,14 +123,14 @@ identifique en el README les vamos poniendo nombre.
   - **Entrega:** un fundamento por umbral, aunque sea provisorio
   - **Commit:** `docs(informe): fundamenta umbrales de confianza y cantidad`
 
-- [ ] **T-06 — C.3: correr el lote y pegar la tabla real** · `@LDibiase` · ⚠️ necesita API key
+- [x] **T-06 — C.3: correr el lote y pegar la tabla real** · `@LDibiase` · ⚠️ necesita API key
   - Correr los 6 inputs del dominio con few-shot y reemplazar el placeholder de
     `resultados_lote.md` por la tabla generada. Después completar la lectura de los resultados.
   - **Comando:** `python lote.py`
   - **Dónde:** `resultados_lote.md` + `informe.md` § C.3
   - **Commit:** `docs(lote): resultados reales del lote few-shot - C.3`
 
-- [ ] **T-07 — C.4: comparar zero-shot contra few-shot** · `@LDibiase` · ⚠️ necesita API key
+- [x] **T-07 — C.4: comparar zero-shot contra few-shot** · `@LDibiase` · ⚠️ necesita API key
   - Correr el mismo lote sin ejemplos y comparar las dos tablas. Esperamos diferencia en el caso #5
     (el pedido ambiguo, donde zero-shot tiende a inventar un ítem para "completar") y en el #6 (el
     intento de injection, que zero-shot puede clasificar como `SEGUIMIENTO_PEDIDO` por el número
@@ -146,16 +146,15 @@ identifique en el README les vamos poniendo nombre.
 
 Estas no tienen dueño: se deciden entre todos y las escribe quien esté a mano.
 
-- [ ] **T-08 — Realismo del caso** · *grupal*
+- [x] **T-08 — Realismo del caso** · *grupal*
   - ¿Alguien conoce un negocio parecido para robarle detalles reales — unidades por bulto, mínimos
     de compra, zonas de entrega? Un detalle real vale más que tres inventados. Si nadie tiene, se
     confirma que queda inventado y listo.
   - **Dónde:** `informe.md` § A.1 + "Decisiones abiertas" #1
 
-- [ ] **T-09 — Repartir la defensa oral** · *grupal*
-  - Un integrante por parte: A (caso, evidencia, PEAS, tokens) · B (matriz, decisión técnica,
-    artefactos) · C (código, lote, prompting). Pueden preguntarle a cualquiera sobre cualquier
-    parte, así que conviene que todos hayan visto el pipeline correr al menos una vez.
+- [~] **T-09 — Repartir la defensa oral** · *grupal* · ⏸️ **postergada**
+  - La Entrega 1 no incluye defensa y todavía no sabemos cómo se evalúa el TP al cierre del
+    cuatrimestre. Se retoma cuando la cátedra lo comunique.
   - **Dónde:** `informe.md` "Decisiones abiertas" #7
 
 - [x] **T-10 — Costo en pesos o dólares (opcional)** · `@giaramayo` · *grupal*

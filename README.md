@@ -9,7 +9,7 @@
 - Federico Cantero — `Fedoh` — T-01: evidencia A.2, primer modelo
 - Agustina Salatino — `agustinasalatino` — T-05: fundamento de los tres umbrales
 - Gisella Aramayo — `giaramayo` — T-10: costo en dólares
-- _⚠️ Lucía (`LuciaLG1988`) — completar nombre y parte (T-03: hipótesis más riesgosa)_
+- Lucía Lopez Guerrero `LuciaLG1988` — T-03: hipótesis más riesgosa
 
 ## Dominio elegido
 
