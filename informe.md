@@ -10,11 +10,11 @@
 - Federico Cantero — `Fedoh` — T-01: evidencia A.2, primer modelo
 - Agustina Salatino — `agustinasalatino` — T-05: fundamento de los tres umbrales
 - Gisella Aramayo — `giaramayo` — T-10: costo en dólares
-- Lucía Lopez Guerrero - (`LuciaLG1988`) — T-03: hipótesis más riesgosa
+- Lucía Lopez Guerrero — `LuciaLG1988` — T-03: hipótesis más riesgosa
 
-> **Estado del documento (Entrega 1 — 2026-09-06):** completo para esta entrega. Las Partes A, B y C están cerradas: la evidencia de A.2 es la respuesta textual de dos modelos distintos con lo inventado marcado, el lote de C.3 y la comparación de C.4 se corrieron contra la API real (`gpt-4o-mini`, 6 inputs, dos técnicas) y las decisiones de diseño están fundamentadas al final del documento. Nada de lo que se afirma acá sobre el comportamiento del sistema es una estimación: se reproduce corriendo `python lote.py`.
+> **Estado del documento (Entrega 1 — 2026-09-07):** completo para esta entrega. Las Partes A, B y C están cerradas: la evidencia de A.2 es la respuesta textual de dos modelos distintos con lo inventado marcado, el lote de C.3 y la comparación de C.4 se corrieron contra la API real (`gpt-4o-mini`, 6 inputs, dos técnicas) y las decisiones de diseño están fundamentadas al final del documento. Nada de lo que se afirma acá sobre el comportamiento del sistema es una estimación: se reproduce corriendo `python lote.py`.
 >
->  El TP es integrador y sigue durante el cuatrimestre.
+> Queda un solo dato por completar, señalado con ⚠️ en A.2: con qué modelo se corrió la primera de las dos respuestas. El TP es integrador y sigue durante el cuatrimestre: lo que acá está cerrado puede reabrirse en las próximas entregas.
 
 ---
 
@@ -37,9 +37,7 @@ de 12 oz? Necesito 30 cajas de cada uno para el jueves en el local de Villa Cres
 Respondé como lo haría el sistema.
 ```
 
-Documentar acá (la rúbrica pide la respuesta **completa y pegada**, con lo inventado **marcado**):
-
-**Respuesta del modelo (completa):**
+**Respuesta 1 — ⚠️ GRUPO (@Fedoh): completar con qué modelo se corrió (ChatGPT / Gemini / otro), respuesta completa:**
 ¡Hola! Gracias por comunicarte con EcoLogix Systems.
 
 Sí, tenemos stock disponible [INVENTADO] de ambos productos para cubrir tu solicitud:
@@ -54,8 +52,7 @@ Podemos entregar el día jueves en tu local de Villa Crespo sin costo adicional,
 
 ¿Querés que te genere el link de pago para reservar el stock?
 
------------------------------
-**Respuesta con Claude**
+**Respuesta 2 — Claude, respuesta completa:**
 
 ¡Hola! Gracias por escribirnos a EcoLogix Systems. Te cuento lo que tenemos:
 
@@ -79,11 +76,7 @@ Horario preferido de recepción
 
 ¿Nos podrías confirmar la dirección completa del local y un horario de contacto para agilizar el pedido?
 
-**Nivel de confianza**
-No es confiable, invento stock de productos y dijo de verificar con un asesor.
------------------------------
-
-**Qué inventó (marcar en negrita o con [INVENTADO]):** lo esperable es que invente **stock disponible**, **precios por caja**, **unidades por caja**, **plazo de entrega** y hasta **una zona de cobertura**, todo con tono seguro y sin ninguna advertencia.
+**Qué inventó:** los dos modelos inventaron **stock disponible** para los dos productos, sin tener catálogo ni base de datos. El primero sumó **precios por caja** ($48.500 y $32.200), **unidades por bulto** (500 y 1.000), el **total de la orden** ($2.421.000 "IVA incluido"), una **zona con reparto programado** (martes y jueves en Villa Crespo), la **entrega sin costo adicional** y un **plazo para confirmar** (hoy antes de las 17:00). El segundo no inventó precios —los derivó a un asesor—, pero sí el stock.
 
 **Con qué nivel de confianza lo presentó:** la primera respuesta afirmó en indicativo ("tenemos stock disponible", "el total es $2.421.000 final") y cerró ofreciendo un link de pago, sin una sola advertencia. La segunda fue más prudente con los precios —los marcó como "a confirmar con un asesor"— pero igual afirmó "Stock disponible ✅" para los dos productos. La diferencia importa: incluso el modelo cauto inventó con total seguridad la única variable que el sistema tiene que resolver contra la base de datos.
 
@@ -508,6 +501,6 @@ Este script es el **segundo y tercer paso** del flujo de B.6: recibe el `texto_l
    - Ante el mensaje "¿Cómo viene el pedido N° 4.521?", el sistema normaliza el número como `4521`. El riesgo no está en interpretar ese número, sino en informar el estado de un pedido que podría pertenecer a otra persona o empresa.
    - La acción de backend es un `SELECT` sobre `pedidos` y `envios`. Antes de informar cualquier dato, debe resolver determinísticamente al remitente mediante su teléfono o email y verificar que `pedidos.cliente_id == remitente.cliente_id`. Si la titularidad no coincide o no puede verificarse, no informa el estado, la demora ni el tracking, y deriva la consulta o responde de forma genérica.
    - Y, si extendemos un poco más el análisis, tampoco lo clasificaríamos como **ALTO**, porque no reserva stock, no crea ni modifica pedidos, no cambia estados y no genera directamente una consecuencia financiera. El daño potencial existe, pero es más acotado que el de una operación de escritura con impacto económico.
-5. **Hipótesis más riesgosa:** elegir entre las dos de B.7.
+5. **Hipótesis más riesgosa — ✅ DECIDIDA (T-03, 2026-09-07):** queda la del **stock desactualizado** (ver B.7). Se eligió por sobre la alternativa (que los clientes describan los productos con precisión suficiente para mapearlos al catálogo) porque ante una descripción ambigua el sistema puede pedir una aclaración y seguir, mientras que con una fuente de stock desactualizada hasta un pedido perfectamente interpretado confirma mercadería que ya no está.
 6. **Proveedor:** el código usa OpenAI (como la cátedra). Si el grupo tiene créditos de Anthropic/Gemini, hay que adaptar `llamar_modelo()` y el manejo de excepciones.
 7. **Reparto para la defensa oral — ⏸️ POSTERGADA (2026-09-06):** la Entrega 1 no incluye defensa y la cátedra todavía no comunicó cómo se evalúa el TP al cierre del cuatrimestre. Se retoma cuando se sepa el formato. El reparto de trabajo real de esta entrega está en `TAREAS.md` y en la lista de integrantes; el esquema A (caso, evidencia, PEAS, tokens) / B (matriz, decisión técnica, artefactos) / C (código, lote, prompting) queda como punto de partida si hace falta.
