@@ -146,7 +146,7 @@ identifique en el README les vamos poniendo nombre.
 
 Estas no tienen dueño: se deciden entre todos y las escribe quien esté a mano.
 
-- [ ] **T-08 — Realismo del caso** · *grupal*
+- [x] **T-08 — Realismo del caso** · *grupal*
   - ¿Alguien conoce un negocio parecido para robarle detalles reales — unidades por bulto, mínimos
     de compra, zonas de entrega? Un detalle real vale más que tres inventados. Si nadie tiene, se
     confirma que queda inventado y listo.
