@@ -123,14 +123,14 @@ identifique en el README les vamos poniendo nombre.
   - **Entrega:** un fundamento por umbral, aunque sea provisorio
   - **Commit:** `docs(informe): fundamenta umbrales de confianza y cantidad`
 
-- [ ] **T-06 — C.3: correr el lote y pegar la tabla real** · `@LDibiase` · ⚠️ necesita API key
+- [x] **T-06 — C.3: correr el lote y pegar la tabla real** · `@LDibiase` · ⚠️ necesita API key
   - Correr los 6 inputs del dominio con few-shot y reemplazar el placeholder de
     `resultados_lote.md` por la tabla generada. Después completar la lectura de los resultados.
   - **Comando:** `python lote.py`
   - **Dónde:** `resultados_lote.md` + `informe.md` § C.3
   - **Commit:** `docs(lote): resultados reales del lote few-shot - C.3`
 
-- [ ] **T-07 — C.4: comparar zero-shot contra few-shot** · `@LDibiase` · ⚠️ necesita API key
+- [x] **T-07 — C.4: comparar zero-shot contra few-shot** · `@LDibiase` · ⚠️ necesita API key
   - Correr el mismo lote sin ejemplos y comparar las dos tablas. Esperamos diferencia en el caso #5
     (el pedido ambiguo, donde zero-shot tiende a inventar un ítem para "completar") y en el #6 (el
     intento de injection, que zero-shot puede clasificar como `SEGUIMIENTO_PEDIDO` por el número
