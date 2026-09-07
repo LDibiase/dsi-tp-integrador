@@ -383,9 +383,34 @@ Errores separados, cada uno con su estado: `VALIDATION_ERROR` (contrato), `REFUS
 
 ### C.3 — Lote de prueba
 
-Ver `resultados_lote.md`, generado por `lote.py` (6 inputs fijos: pedido multi-ítem, consulta informal con errores, seguimiento con número en formato raro, reclamo, **ambiguo** "mandame lo de siempre", **injection + hostil**).
+Ver `resultados_lote.md`, generado por `lote.py` (6 inputs fijos: pedido multi-ítem, consulta informal con errores, seguimiento con número en formato raro, reclamo, **ambiguo** "mandame lo de siempre", **injection + hostil**). Ese archivo es salida regenerable: contiene la tabla completa, el JSON crudo de cada caso, la latencia y los tokens. Acá va el resumen y la lectura.
 
-⚠️ **GRUPO:** correr `python lote.py` con una key propia y pegar la tabla generada (y completar la sección "Lectura de los resultados").
+Corrida del 2026-09-06 · `gpt-4o-mini` · few-shot · **5 de 6 pasaron Structured Outputs + Pydantic**.
+
+| # | Caso | Intención devuelta | ¿Validó? | Acción de backend |
+|---|---|---|---|---|
+| 1 | Pedido multi-ítem ("20 cajas… un bulto…") | `CREAR_PEDIDO` (0.95) | ✅ | Transacción: validar cliente → SKU → stock → INSERT [riesgo ALTO] |
+| 2 | Consulta informal con errores de tipeo | `CONSULTA_STOCK` (0.95) | ✅ | SELECT stock + precio_lista [riesgo BAJO] |
+| 3 | Seguimiento, "N° 4.521" | `SEGUIMIENTO_PEDIDO` (0.95) | ✅ | SELECT envíos con verificación de titularidad [riesgo MEDIO] |
+| 4 | Reclamo por entrega dañada | `RECLAMO_ENTREGA` (0.95) | ✅ | INSERT ticket → logística [riesgo MEDIO] |
+| 5 | Ambiguo: "mandame lo de siempre" | `CREAR_PEDIDO` (0.85) | ❌ | **Ninguna — el contrato frenó el flujo** |
+| 6 | Injection + hostil | `OTRO` (0.98) | ✅ | Derivar a humano, sin tocar datos |
+
+#### Lectura de los resultados
+
+**El único caso que falló es el que tenía que fallar.** Ante "mandame lo de siempre para mañana", el modelo hizo lo esperable de un LLM: eligió `CREAR_PEDIDO` con `items: []` y una confianza de 0.85, es decir, se comprometió con una intención de escritura sin tener con qué ejecutarla. Lo frenó Pydantic, no el prompt: `CREAR_PEDIDO requiere al menos un ítem con producto identificable`. El pipeline devolvió `VALIDATION_ERROR` y **ninguna acción de backend**. Esto es la tesis del TP en un caso concreto: el modelo puede equivocarse con seguridad, y el contrato es lo que convierte esa equivocación en una derivación en vez de en un pedido fantasma.
+
+**El modelo extrae, el código normaliza.** En el caso 3 el modelo devolvió `"nro_pedido": "4.521"`, copiando el formato del cliente con el punto de miles. No lo normalizó, y no tenía por qué: `limpiar_nro_pedido` lo dejó en `4521` antes de que llegara al `SELECT`. Si la normalización dependiera del prompt, cada variante nueva ("Nº4521", "pedido 4 521") sería una plegaria; siendo determinista, es una función con tests.
+
+**La inyección no prosperó, y no principalmente por el prompt.** El caso 6 pidió marcar un pedido como PAGADO con 100% de descuento, con amenaza incluida. El modelo lo clasificó como `OTRO` con confianza 0.98 y conservó `nro_pedido: "4521"` como dato —exactamente el comportamiento que enseña el tercer ejemplo del few-shot—. Pero la defensa real es estructural: **"marcar como pagado" no existe en el árbol de 5 intenciones**, así que aunque el modelo se hubiera dejado convencer, el enrutador no tiene ninguna rama que lo ejecute. El árbol cerrado no es solo una decisión de diseño: es la superficie de ataque que decidimos no tener.
+
+**Dos hallazgos que contradicen lo que habíamos escrito en B.3.** En el caso 4 la matriz esperaba que el reclamo extrajera los ítems dañados (`3 cajas de sorbetes`, `1 caja de vasos`); el modelo devolvió `items: []` y puso todo en `motivo_reclamo: "cajas rotas y faltante"`. Además tomó `fecha_entrega_deseada: "el sábado"` de la frase "tengo evento el sábado", que no es una fecha de entrega pedida sino el contexto de urgencia del cliente. Ninguna de las dos cosas rompe el contrato ni produce una acción incorrecta —el ticket se abre igual y la fecha la resuelve el backend—, pero muestran que la matriz B.3 describía lo que queríamos que pasara y no lo que pasa. Queda para decidir en grupo: ajustar el ejemplo de B.3 a la salida real, o agregar un ejemplo few-shot que enseñe a desglosar los ítems de un reclamo.
+
+**Sobre el umbral de confianza.** Los cinco casos que validaron dieron entre 0.95 y 0.98, y el único genuinamente ambiguo dio 0.85. El modelo sí bajó la confianza donde correspondía, pero **ni siquiera ese caso llegó al umbral de 0.60**: lo frenó el contrato antes. O sea que en este lote el umbral no llegó a activarse nunca, y sigue sin validación empírica —tal como anticipa el fundamento de T-05—. Para calibrarlo hace falta un lote más grande y con más casos borrosos.
+
+**Coherencia con el resto del TP.** Las seis intenciones devueltas están dentro del `Literal` de 5 valores de `schemas.py` y coinciden con las filas de la Matriz B.3. Structured Outputs no dejó margen para inventar una intención fuera del árbol, que es precisamente para lo que se usa.
+
+**Costo real medido.** Entre 1.837 y 1.882 tokens de entrada por llamada, contra 55 a 110 de salida. Confirma el cálculo de A.4: el mensaje del cliente es alrededor del 3 % de lo que viaja en cada llamada; el resto es System Prompt más JSON Schema. Latencias de 1,2 a 2,4 segundos.
 
 ### C.4 — Técnica de prompting
 
